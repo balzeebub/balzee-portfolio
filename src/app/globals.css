@@ -1,0 +1,320 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                             */
+/* -------------------------------------------------------------------------- */
+
+@theme {
+  /* Core palette */
+  --color-ink: #0f0f0f;
+  --color-ink-raised: #141414;
+  --color-ink-sunken: #0a0a0a;
+  --color-paper: #ffffff;
+
+  --color-accent: #22c55e;
+  --color-accent-soft: #4ade80;
+  --color-accent-deep: #16a34a;
+
+  /* Text scale on dark.
+     `fg-subtle` sits at #7c7c7c rather than a dimmer grey so small labels stay
+     above the 4.5:1 contrast floor against #0f0f0f. */
+  --color-fg: #ffffff;
+  --color-fg-muted: #a8a8a8;
+  --color-fg-subtle: #7c7c7c;
+
+  /* Hairlines */
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+
+  /* Typography.
+     Inter and Space Grotesk are self-hosted and loaded through `next/font`,
+     which preloads them and generates a metric-matched fallback face — that
+     fallback is what keeps font swap from shifting the layout. Clash Display
+     comes from Fontshare (see layout.tsx); Space Grotesk stands in for it with
+     a very similar geometric-grotesque texture if that request is slow. */
+  --font-display:
+    "Clash Display", var(--font-space-grotesk), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* Motion. One deceleration curve used everywhere so the whole page shares a
+     single sense of weight. */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base                                                                      */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keep anchored headings clear of the fixed navbar. */
+    scroll-padding-top: 7rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Optical tracking: the larger the type, the tighter it needs to be set. */
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.042em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.034em;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  * {
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    border: 3px solid var(--color-ink);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Typographic utilities                                                     */
+/* -------------------------------------------------------------------------- */
+
+/* Section headline. */
+@utility type-display {
+  font-size: clamp(2.125rem, 4.5vw, 3.375rem);
+  line-height: 1.04;
+}
+
+/* Standfirst under a headline — deliberately larger than body copy. */
+@utility type-lede {
+  font-size: clamp(1.0625rem, 1.15vw, 1.1875rem);
+  line-height: 1.62;
+  letter-spacing: -0.011em;
+}
+
+/* Default running copy inside cards and columns. */
+@utility type-body {
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  letter-spacing: -0.006em;
+}
+
+/* Small caps label. */
+@utility type-label {
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Surface & background utilities                                            */
+/* -------------------------------------------------------------------------- */
+
+/* Fine 1px grid used behind the hero and closing CTA. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.058) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.058) 1px, transparent 1px);
+  background-size: 76px 76px;
+}
+
+/* Top-lit surface sheen for cards. */
+@utility surface {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.014) 42%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 42%,
+    rgba(255, 255, 255, 0.58) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Section divider that fades out at both edges instead of running wall to
+   wall — softens the seam between sections. */
+@utility rule-fade {
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.13) 22%,
+    rgba(255, 255, 255, 0.13) 78%,
+    transparent 100%
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Cursor spotlight                                                          */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * A soft highlight that tracks the pointer across a card grid. `isolation`
+ * plus a negative z-index keeps the glow above the card's own background but
+ * behind its content, so text never washes out. Coordinates come from a single
+ * rAF-throttled listener on the grid container (see Reveal.tsx).
+ */
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      340px circle at var(--spot-x, 50%) var(--spot-y, 0%),
+      rgba(255, 255, 255, 0.075),
+      transparent 68%
+    );
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out-quint);
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Keyframes                                                                 */
+/* -------------------------------------------------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.14);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-140%) skewX(-16deg);
+  }
+  100% {
+    transform: translateX(320%) skewX(-16deg);
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-70%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(180%);
+    opacity: 0;
+  }
+}
+
+.animate-marquee {
+  animation: marquee 46s linear infinite;
+}
+
+.animate-drift {
+  animation: drift 22s ease-in-out infinite;
+}
+
+.animate-scroll-cue {
+  animation: scroll-cue 2.6s var(--ease-out-quint) infinite;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Reduced motion                                                            */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

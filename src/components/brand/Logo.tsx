@@ -1,0 +1,67 @@
+/**
+ * Balzee brand marks.
+ *
+ * GENERATED — do not hand-edit. The geometry is the single source shared with
+ * the files in `public/branding`. Both marks paint with `currentColor`, so they
+ * pick up whatever text colour their container sets.
+ */
+
+const MARK_D =
+  "M0,0 H46 L64,18 V37 L48,53 L72,77 V88 L54,106 H0 Z M24,18 L50,31 L24,44 Z M24,62 L56,75 L24,88 Z";
+
+const WORDMARK_D =
+  "M0.00 0.00V-13.67H13.54V-86.33H0.00V-100.00H50.78Q59.72 -100.00 66.48 -96.90Q73.24 -93.81 77.03 -88.16Q80.81 -82.52 80.81 -74.81V-73.49Q80.81 -66.58 78.19 -62.15Q75.57 -57.71 71.95 -55.28Q68.32 -52.85 64.98 -51.80V-49.53Q68.32 -48.67 72.11 -46.21Q75.90 -43.76 78.54 -39.28Q81.19 -34.80 81.19 -27.71V-26.28Q81.19 -18.04 77.30 -12.14Q73.42 -6.24 66.64 -3.12Q59.85 0.00 51.00 0.00ZM29.00 -14.04H49.21Q56.96 -14.04 61.34 -17.74Q65.73 -21.44 65.73 -28.01V-29.34Q65.73 -35.91 61.39 -39.61Q57.05 -43.31 49.21 -43.31H29.00ZM29.00 -57.36H49.23Q56.49 -57.36 60.92 -61.03Q65.36 -64.71 65.36 -70.94V-72.37Q65.36 -78.70 60.97 -82.33Q56.58 -85.96 49.23 -85.96H29.00Z M128.26 0.00 156.79 -100.00H183.85L212.39 0.00H196.41L189.88 -23.60H150.76L144.24 0.00ZM154.54 -37.83H186.10L171.46 -90.39H169.19Z M263.04 0.00V-100.00H278.50V-14.04H326.61V0.00Z M374.34 0.00V-20.00L426.87 -84.16V-86.14H375.87V-100.00H442.69V-80.00L390.16 -15.84V-13.86H443.37V0.00Z M497.47 0.00V-100.00H560.41V-85.96H512.93V-57.35H556.41V-43.31H512.93V-14.04H561.16V0.00Z M614.47 0.00V-100.00H677.41V-85.96H629.93V-57.35H673.41V-43.31H629.93V-14.04H678.16V0.00Z";
+
+/** The B monogram. 72 x 106 units. */
+export function BalzeeMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 72 106"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d={MARK_D} />
+    </svg>
+  );
+}
+
+/** BALZEE set in outlines — no font dependency, so it never reflows. */
+export function BalzeeWordmark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 678.16 100"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
+      <g transform="translate(0 100)">
+        <path d={WORDMARK_D} />
+      </g>
+    </svg>
+  );
+}
+
+/**
+ * Horizontal lockup used in the navbar and footer. The mark and wordmark are
+ * separate elements so each can be sized against the layout independently.
+ */
+export function BalzeeLogo({
+  className,
+  markClassName,
+  wordmarkClassName,
+}: {
+  className?: string;
+  markClassName?: string;
+  wordmarkClassName?: string;
+}) {
+  return (
+    <span className={className}>
+      <BalzeeMark className={markClassName} />
+      <BalzeeWordmark className={wordmarkClassName} />
+      <span className="sr-only">Balzee</span>
+    </span>
+  );
+}
