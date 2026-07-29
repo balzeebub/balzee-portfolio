@@ -24,7 +24,8 @@ export type Project = {
    * Optional path to a real image in /public. Leave undefined to render the
    * generated placeholder artwork instead.
    */
-  image?: string;
+ image?: string;
+video?: string;
 };
 
 export const projects: Project[] = [
@@ -38,6 +39,7 @@ export const projects: Project[] = [
     tags: ["Premiere Pro", "Reels", "Real Estate"],
     metric: "38s avg. watch time",
     ratio: "portrait",
+    video: "https://youtube.com/shorts/YqXlh7RhfYs?feature=share",
   },
   {
     title: "Agent Authority Series",
@@ -48,16 +50,18 @@ export const projects: Project[] = [
     tags: ["CapCut", "Shorts", "Captions"],
     metric: "12 videos / month",
     ratio: "portrait",
+    video: "https://youtube.com/shorts/4LmOGRxOos0?feature=share",
   },
   {
-    title: "Client Testimonial Cuts",
-    client: "Realty of America",
+    title: "Talking head sales",
+    client: "Falcon Storage",
     category: "Video Editing",
     description:
-      "Raw closing-day footage edited into 30-second social proof pieces with clean audio, colour grading and branded end cards.",
+      "An educational talking-head video explaining storage options, pricing, and best practices, edited with dynamic captions and clean visuals to keep viewers engaged.",
     tags: ["Colour grade", "Audio clean-up"],
     metric: "4.1x saves vs. baseline",
     ratio: "landscape",
+    video: "https://youtube.com/shorts/qQBcT8dVGic",
   },
 
   // --------------------------------------------------------------- social --
