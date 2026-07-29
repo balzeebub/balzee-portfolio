@@ -27,6 +27,58 @@ const ratioClass = {
   square: "aspect-square",
 } as const;
 
+type ThumbnailQuality = "maxresdefault" | "hqdefault";
+
+/**
+ * Poster frame for a project that has a video but no uploaded image.
+ *
+ * YouTube only publishes `maxresdefault` for some uploads — when it's missing
+ * the request 404s, so the error handler drops to `hqdefault`, which always
+ * exists. That fallback has to happen at runtime; there's no way to know which
+ * one is available up front.
+ *
+ * This uses a plain <img> rather than next/image deliberately: next/image would
+ * need `img.youtube.com` added to `images.remotePatterns` in next.config.ts,
+ * and this keeps the change to a single file. The classes below reproduce what
+ * `<Image fill>` emits, so it renders pixel-for-pixel the same.
+ *
+ * Rendered with `key={source.id}` so a change of video remounts it and retries
+ * maxres, rather than inheriting a previous card's fallback.
+ */
+function YouTubeThumbnail({
+  videoId,
+  alt,
+}: {
+  videoId: string;
+  alt: string;
+}) {
+  const [quality, setQuality] = useState<ThumbnailQuality>("maxresdefault");
+
+  const downgrade = () =>
+    setQuality((current) =>
+      current === "maxresdefault" ? "hqdefault" : current,
+    );
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- see note above
+    <img
+      ref={(node) => {
+        // The markup is server-rendered, so the browser can finish (and fail)
+        // the request before React attaches onError. An image that is already
+        // complete with no intrinsic width has errored — catch that here, or
+        // the fallback silently never fires.
+        if (node?.complete && node.naturalWidth === 0) downgrade();
+      }}
+      src={`https://img.youtube.com/vi/${videoId}/${quality}.jpg`}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      onError={downgrade}
+      className="absolute inset-0 h-full w-full object-cover transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+    />
+  );
+}
+
 export function Portfolio() {
   const [active, setActive] = useState<Filter>("All");
   const [playing, setPlaying] = useState<Project | null>(null);
@@ -109,9 +161,12 @@ export function Portfolio() {
       >
         <AnimatePresence mode="popLayout">
           {visible.map((project, i) => {
-            // Only treat the card as playable when the URL actually resolves,
-            // so a malformed link degrades to the plain, unclickable card.
-            const playable = parseYouTubeUrl(project.video) !== null;
+            // Parsed once and reused: it decides both whether the card is
+            // clickable and, when there's no uploaded image, which video the
+            // poster frame comes from. A malformed link resolves to null, so
+            // the card degrades to the plain, unclickable placeholder version.
+            const source = parseYouTubeUrl(project.video);
+            const playable = source !== null;
 
             return (
               <motion.article
@@ -141,6 +196,12 @@ export function Portfolio() {
                       loading="lazy"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                    />
+                  ) : source ? (
+                    <YouTubeThumbnail
+                      key={source.id}
+                      videoId={source.id}
+                      alt={`${project.title} — ${project.category} work for ${project.client}`}
                     />
                   ) : (
                     <div className="absolute inset-0 transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]">
