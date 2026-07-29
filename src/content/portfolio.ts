@@ -74,6 +74,7 @@ export const projects: Project[] = [
     tags: ["Instagram", "Meta Suite", "Reporting"],
     metric: "+214% reach in 90 days",
     ratio: "square",
+    image: "/portfolio/images/Full-Channel Management.png",
   },
   {
     title: "30-Day Content Calendar",
@@ -84,6 +85,7 @@ export const projects: Project[] = [
     tags: ["Strategy", "Calendar", "Notion"],
     metric: "5 posts / week sustained",
     ratio: "landscape",
+    image: "/portfolio/images/30-Day Content Calendar.png",
   },
   {
     title: "Engagement Sprint",
@@ -94,6 +96,7 @@ export const projects: Project[] = [
     tags: ["Community", "DM funnel"],
     metric: "63 qualified DMs",
     ratio: "square",
+    image: "/portfolio/images/Engagement Sprint.png",
   },
 
   // --------------------------------------------------------------- design --
