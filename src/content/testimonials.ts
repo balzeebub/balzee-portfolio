@@ -28,13 +28,13 @@ export const testimonials: Testimonial[] = [
     quote:
       "What I appreciate most is that I never have to follow up. Deadlines are met, the reporting arrives on Monday, and when I ask for something on short notice it's done the same day.",
     name: "Roberto Martinez",
-    title: "Managing Broker",
+    title: "Team Leader",
     company: "Realty of America",
     initials: "RM",
   },
   {
     quote:
-      "We brought Bal in for Social Media support and ended up handing over the entire content operation. It's rare to find someone who's genuinely strong at both the creative side and the systems side.",
+      "Working with Zentro over the past couple of years has been one of the best investments I've made for my business. They manage my Instagram by creating reels, carousels, posts, and stories, and together we've developed a system that makes reviewing and approving content incredibly easy.",
     name: "Laura Bostrom",
     title: "Founder",
     company: "Everyday Order",
