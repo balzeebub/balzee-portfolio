@@ -144,6 +144,7 @@ export const projects: Project[] = [
     tags: ["Canva", "Templates", "Brand system"],
     metric: "18 reusable templates",
     ratio: "square",
+    image: "/portfolio/images/Listing Graphics System.png",
   },
   {
     title: "Educational Carousels",
@@ -154,6 +155,7 @@ export const projects: Project[] = [
     tags: ["Carousel", "Editorial layout"],
     metric: "2.8x avg. saves",
     ratio: "portrait",
+    image: "/portfolio/images/Educational Carousels.png",
   },
   {
     title: "Paid Ad Creative Set",
@@ -164,6 +166,7 @@ export const projects: Project[] = [
     tags: ["Meta Ads", "A/B variants"],
     metric: "-31% cost per lead",
     ratio: "landscape",
+    image: "/portfolio/images/Paid Ad Creative Set.png",
   },
 
   // -------------------------------------------------------------- landing --
@@ -176,6 +179,7 @@ export const projects: Project[] = [
     tags: ["Lead magnet", "Copy", "Design"],
     metric: "11.4% conversion rate",
     ratio: "landscape",
+    image: "/portfolio/images/Buyer Lead Capture Page.png",
   },
   {
     title: "Service Booking Page",
@@ -186,6 +190,7 @@ export const projects: Project[] = [
     tags: ["Booking flow", "Pricing"],
     metric: "2.3x calls booked",
     ratio: "landscape",
+    image: "/portfolio/images/Service Booking Page.png",
   },
   {
     title: "Open House Registration",
@@ -196,6 +201,7 @@ export const projects: Project[] = [
     tags: ["Mobile-first", "Automation"],
     metric: "94% mobile completion",
     ratio: "square",
+    image: "/portfolio/images/Open House Registration.png",
   },
 ];
 // -------------------------------------------------------------- landing --
