@@ -21,32 +21,24 @@ export const testimonials: Testimonial[] = [
       "The video work is the difference. Our walkthroughs used to look like phone footage; now they look like a production team shot them. Two of our last four buyers said they found us through a reel.",
     name: "Danielle Chen",
     title: "Team Lead",
-    company: "Pacific Realty Group",
+    company: "eXp Realty",
     initials: "DC",
   },
   {
     quote:
       "What I appreciate most is that I never have to follow up. Deadlines are met, the reporting arrives on Monday, and when I ask for something on short notice it's done the same day.",
-    name: "Anthony Boyd",
+    name: "Roberto Martinez",
     title: "Managing Broker",
     company: "Realty of America",
-    initials: "AB",
+    initials: "RM",
   },
   {
     quote:
-      "We brought Bal in for admin support and ended up handing over the entire content operation. It's rare to find someone who's genuinely strong at both the creative side and the systems side.",
-    name: "Priya Nathan",
+      "We brought Bal in for Social Media support and ended up handing over the entire content operation. It's rare to find someone who's genuinely strong at both the creative side and the systems side.",
+    name: "Laura Bostrom",
     title: "Founder",
     company: "Everyday Order",
-    initials: "PN",
-  },
-  {
-    quote:
-      "Our cost per lead dropped by roughly a third after the creative refresh. Same budget, same audience — the difference was entirely in the assets.",
-    name: "Grant Whitaker",
-    title: "Marketing Director",
-    company: "Pacific Realty Group",
-    initials: "GW",
+    initials: "LB",
   },
   {
     quote:
