@@ -34,7 +34,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Working with Zentro over the past couple of years has been one of the best investments I've made for my business. They manage my Instagram by creating reels, carousels, posts, and stories, and together we've developed a system that makes reviewing and approving content incredibly easy.",
+      "Working with Bal over the past couple of years has been one of the best investments I've made for my business. They manage my Instagram by creating reels, carousels, posts, and stories, and together we've developed a system that makes reviewing and approving content incredibly easy.",
     name: "Laura Bostrom",
     title: "Founder",
     company: "Everyday Order",
