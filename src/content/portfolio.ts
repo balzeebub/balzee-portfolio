@@ -133,8 +133,7 @@ export const projects: Project[] = [
     ratio: "square",
     image: "/portfolio/images/Engagement Sprint.png",
   },
-
- // --------------------------------------------------------------- design --
+// --------------------------------------------------------------- design --
 {
   title: "Listing Graphics System",
   client: "Realty of America",
@@ -168,7 +167,7 @@ export const projects: Project[] = [
   ratio: "landscape",
   image: "/portfolio/images/Paid Ad Creative Set.png",
 },
-
+ 
 // -------------------------------------------------------------- landing --
 {
   title: "Buyer Lead Capture Page",
