@@ -98,7 +98,7 @@ export function Testimonials() {
         index="07"
         eyebrow="Testimonials"
         title="What it's like to work together."
-        description="Placeholder quotes for now — swap them for your own client feedback as it comes in."
+        description="Great work comes from clear communication, consistent execution, and treating every project like it's your own."
       />
 
       <Reveal delay={0.1}>
