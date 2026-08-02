@@ -19,7 +19,7 @@ export const tools: Tool[] = [
   {
     name: "CapCut",
     category: "Video",
-    logo: "/tools/capcut.svg",
+    logo: "/tools/capcut.png",
   },
   {
     name: "Adobe Photoshop",
@@ -29,22 +29,22 @@ export const tools: Tool[] = [
   {
     name: "ChatGPT",
     category: "AI",
-    logo: "/tools/chatgpt.svg",
+    logo: "/tools/chatgpt.png",
   },
   {
     name: "Claude",
     category: "AI",
-    logo: "/tools/claude.svg",
+    logo: "/tools/claude.png",
   },
   {
     name: "Notion",
     category: "Ops",
-    logo: "/tools/notion.svg",
+    logo: "/tools/notion.webp",
   },
   {
     name: "Google Workspace",
     category: "Ops",
-    logo: "/tools/google.svg",
+    logo: "/tools/google.webp",
   },
   {
     name: "Meta Business Suite",
@@ -59,17 +59,22 @@ export const tools: Tool[] = [
   {
     name: "CRM Platforms",
     category: "Sales",
-    logo: "/tools/crm.svg",
+    logo: "/tools/crm.jpg",
   },
   {
-    name: "Trello / Asana",
+    name: "Trello",
     category: "Ops",
     logo: "/tools/trello.svg",
+  },
+  {
+    name: "Asana",
+    category: "Ops",
+    logo: "/tools/asana.png",
   },
 ];
 
 /**
- * Logos shown in the "Trusted by" section.
+ * Logos shown in the "Trusted by" strip.
  */
 export type Client = {
   name: string;
