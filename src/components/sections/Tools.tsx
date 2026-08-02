@@ -32,13 +32,16 @@ export function Tools() {
               spotlight
               className="group flex flex-col items-start justify-between gap-6 bg-ink p-6 transition-colors duration-500 hover:bg-ink-raised lg:p-7"
             >
-              <span
-                aria-hidden
-                className="grid h-11 w-11 place-items-center rounded-xl border border-line bg-white/[0.03] text-[0.8125rem] font-semibold tracking-tight text-white/70 transition-[color,border-color,background-color,translate,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:border-accent/40 group-hover:bg-accent/[0.07] group-hover:text-accent"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {tool.mark}
-              </span>
+             <span
+              aria-hidden
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-white/[0.03] transition-[border-color,background-color,translate,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:border-accent/40 group-hover:bg-accent/[0.07]"
+>
+  <img
+    src={tool.logo}
+    alt={tool.name}
+    className="h-8 w-8 object-contain"
+  />
+</span>
               <div>
                 <p className="text-[0.9375rem] font-medium leading-snug text-white">
                   {tool.name}
