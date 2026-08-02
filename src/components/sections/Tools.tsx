@@ -3,6 +3,16 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 
+const noInvert = [
+  "ChatGPT",
+  "Claude",
+  "Google Workspace",
+  "Meta Business Suite",
+  "CapCut",
+  "CRM Platforms",
+  "Asana",
+];
+
 export function Tools() {
   return (
     <Section id="tools">
@@ -14,6 +24,7 @@ export function Tools() {
             title="Fluent in the stack you already use."
             description="No onboarding tax. I plug into your existing tools on day one — and if you don't have a stack yet, I'll set one up that your team can actually maintain."
           />
+
           <Reveal delay={0.19}>
             <p className="mt-9 border-l border-accent/50 pl-6 type-body text-fg-subtle">
               Using something not listed here? Send it over — picking up a new
@@ -32,20 +43,26 @@ export function Tools() {
               spotlight
               className="group flex flex-col items-start justify-between gap-6 bg-ink p-6 transition-colors duration-500 hover:bg-ink-raised lg:p-7"
             >
-             <span
-              aria-hidden
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-white/[0.03] transition-[border-color,background-color,translate,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:border-accent/40 group-hover:bg-accent/[0.07]"
->
-  <img
-    src={tool.logo}
-    alt={tool.name}
-    className="h-8 w-8 object-contain"
-  />
-</span>
+              <span
+                aria-hidden
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-white/[0.03] transition-[border-color,background-color,translate,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:border-accent/40 group-hover:bg-accent/[0.07]"
+              >
+                <img
+                  src={tool.logo}
+                  alt={tool.name}
+                  className={`h-8 w-8 object-contain ${
+                    noInvert.includes(tool.name)
+                      ? ""
+                      : "brightness-0 invert"
+                  }`}
+                />
+              </span>
+
               <div>
                 <p className="text-[0.9375rem] font-medium leading-snug text-white">
                   {tool.name}
                 </p>
+
                 <p className="mt-1.5 text-[0.6875rem] uppercase tracking-[0.16em] text-fg-subtle">
                   {tool.category}
                 </p>
