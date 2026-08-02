@@ -13,6 +13,14 @@ const noInvert = [
   "Asana",
 ];
 
+const transparentBackground = [
+  "CapCut",
+  "ChatGPT",
+  "Meta Business Suite",
+  "CRM Platforms",
+  "Asana",
+];
+
 export function Tools() {
   return (
     <Section id="tools">
@@ -45,7 +53,11 @@ export function Tools() {
             >
               <span
                 aria-hidden
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-white/[0.03] transition-[border-color,background-color,translate,scale] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:border-accent/40 group-hover:bg-accent/[0.07]"
+                className={`flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 ${
+                  transparentBackground.includes(tool.name)
+                    ? "border border-transparent bg-transparent"
+                    : "border border-line bg-white/[0.03] group-hover:border-accent/40 group-hover:bg-accent/[0.07]"
+                }`}
               >
                 <img
                   src={tool.logo}
