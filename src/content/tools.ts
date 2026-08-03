@@ -90,15 +90,7 @@ export const clients: Client[] = [
   {
     name: "eXp Realty",
     logo: {
-      src: "/logos/exp-realty.svg",
-      width: 512,
-      height: 128,
-    },
-  },
-  {
-    name: "Pacific Realty Group",
-    logo: {
-      src: "/logos/pacific-realty-group.svg",
+      src: "/logos/exp-realty.png",
       width: 512,
       height: 128,
     },
@@ -106,7 +98,7 @@ export const clients: Client[] = [
   {
     name: "Realty of America",
     logo: {
-      src: "/logos/realty-of-america.svg",
+      src: "/logos/realty-of-america.png",
       width: 512,
       height: 128,
     },
