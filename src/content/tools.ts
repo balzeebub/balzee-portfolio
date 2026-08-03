@@ -116,7 +116,7 @@ export const clients: Client[] = [
     logo: {
       src: "/logos/everydayorder.png",
       width: 1200,
-      height: 300,
+      height: 500,
     },
   },
 ];
