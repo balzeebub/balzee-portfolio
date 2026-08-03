@@ -147,9 +147,9 @@ export const clients: Client[] = [
     name: "Pacific Realty Group",
     logo: {
       src: "/logos/PRGSVG.svg",
-      width: 512,
-      height: 128,
-      treatment: "knockout-light",
+      width: 1300,
+      height: 500,
+      scale: 2.15,
     },
   },
   {
