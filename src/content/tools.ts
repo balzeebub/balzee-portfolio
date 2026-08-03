@@ -158,8 +158,8 @@ export const clients: Client[] = [
     name: "Everyday Order",
     logo: {
       src: "/logos/everydayordersvg.svg",
-      width: 1000,
-      height: 300,
+      width: 1300,
+      height: 500,
       scale: 1.15,
       treatment: "white",
     },
