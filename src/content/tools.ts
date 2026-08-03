@@ -106,10 +106,11 @@ export const clients: Client[] = [
   {
     name: "Pacific Realty Group",
     logo: {
-      src: "/logos/prg.png",
+      src: "/logos/PRG.png",
       width: 512,
       height: 128,
-    },
+    }
+  },
   {
     name: "Everyday Order",
     logo: {
