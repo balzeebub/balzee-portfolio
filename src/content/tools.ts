@@ -115,8 +115,8 @@ export const clients: Client[] = [
     name: "Everyday Order",
     logo: {
       src: "/logos/everydayorder.png",
-      width: 512,
-      height: 128,
+      width: 1200,
+      height: 300,
     },
   },
 ];
