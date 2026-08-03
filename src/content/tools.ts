@@ -146,7 +146,7 @@ export const clients: Client[] = [
     // file with transparency and switching to "white" is the proper fix.
     name: "Pacific Realty Group",
     logo: {
-      src: "/logos/PRG.png",
+      src: "/logos/PRGSVG.svg",
       width: 512,
       height: 128,
       treatment: "knockout-light",
