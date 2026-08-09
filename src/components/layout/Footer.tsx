@@ -1,8 +1,17 @@
+import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import { navLinks, site } from "@/lib/site";
 import { Container } from "@/components/ui/Container";
 import { InstagramIcon } from "@/components/ui/icons";
 import { BalzeeLogo } from "@/components/brand/Logo";
+
+/*
+ * Footer anchors are absolute ("/#about", not "#about"). The footer renders on
+ * every page, and a bare hash only resolves on the home page — from /book each
+ * one would be a dead link. From the home page the browser still treats these
+ * as a same-document fragment jump, so nothing changes there.
+ */
+const navHref = (href: string) => (href.startsWith("#") ? `/${href}` : href);
 
 const socials = [
   { label: "Email", href: `mailto:${site.email}`, icon: Mail },
@@ -18,9 +27,9 @@ export function Footer() {
       <Container className="py-20">
         <div className="flex flex-col gap-14 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <a
-              href="#top"
-              aria-label={`${site.brand} — back to top`}
+            <Link
+              href="/#top"
+              aria-label={`${site.brand} — home`}
               className="group -m-2 inline-block rounded-lg p-2 transition-opacity duration-300 hover:opacity-80"
             >
               <BalzeeLogo
@@ -28,7 +37,7 @@ export function Footer() {
                 markClassName="h-7 w-auto"
                 wordmarkClassName="h-3 w-auto"
               />
-            </a>
+            </Link>
             <p className="mt-5 type-body text-fg-muted">
               {site.role} partnering with real estate teams, agencies and
               growing businesses. Based in {site.location}, working across{" "}
@@ -40,22 +49,24 @@ export function Footer() {
             <nav aria-label="Footer">
               <h3 className="type-label text-fg-subtle">Navigate</h3>
               <ul className="mt-6 flex flex-col gap-3">
-                {[...navLinks, { label: "Contact", href: "#contact" }].map(
-                  (link) => (
-                    <li key={link.href}>
-                      <a
-                        href={link.href}
-                        className="group inline-flex items-center gap-2 text-sm text-fg-muted transition-colors duration-300 hover:text-white"
-                      >
-                        <span
-                          aria-hidden
-                          className="h-px w-0 bg-accent transition-[width] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-4"
-                        />
-                        {link.label}
-                      </a>
-                    </li>
-                  ),
-                )}
+                {[
+                  ...navLinks,
+                  { label: "Contact", href: "#contact" },
+                  { label: "Book a call", href: site.calendly },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={navHref(link.href)}
+                      className="group inline-flex items-center gap-2 text-sm text-fg-muted transition-colors duration-300 hover:text-white"
+                    >
+                      <span
+                        aria-hidden
+                        className="h-px w-0 bg-accent transition-[width] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-4"
+                      />
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </nav>
 
