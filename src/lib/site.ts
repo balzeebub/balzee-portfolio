@@ -33,7 +33,7 @@ export const site = {
 
   // Update this to your live domain before deploying — it drives canonical
   // URLs, sitemap.xml and Open Graph tags.
-  url: "https://balzee.com",
+  url: "https://workwithbalzee.com",
 
   tagline: "Marketing Virtual Assistant",
   description:
