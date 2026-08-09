@@ -15,7 +15,20 @@ export const site = {
   phone: "+63 991 105 0131",
   phoneHref: "+639911050131",
 
-  calendly: "https://calendly.com/jmbalderama019/book-your-discovery-call",
+  /**
+   * Where every "Book a Discovery Call" button on the site points.
+   *
+   * It goes to the onboarding page rather than straight to Calendly, so a call
+   * is never booked without context. The name is kept as `calendly` on purpose
+   * — six components already read this key, and repointing it here means none
+   * of them had to change. To go back to booking directly, set this to the
+   * value of `calendlyUrl` below.
+   */
+  calendly: "/book",
+
+  /** The real Calendly link. Embedded on the last step of /book. */
+  calendlyUrl: "https://calendly.com/jmbalderama019/book-your-discovery-call",
+
   instagram: "https://www.instagram.com/balzeebubb/",
 
   // Update this to your live domain before deploying — it drives canonical
