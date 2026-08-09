@@ -1,12 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navLinks, sectionIds, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -14,6 +10,17 @@ import { Container } from "@/components/ui/Container";
 import { BalzeeLogo } from "@/components/brand/Logo";
 
 export function Navbar() {
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+
+  /*
+   * The nav is all in-page anchors, which only resolve on the home page. From
+   * anywhere else (/book, say) they have to become "/#about" so the browser
+   * navigates home first — otherwise every link is a no-op. The scroll-spy
+   * still keys off the bare hash, so highlighting is unaffected.
+   */
+  const hrefFor = (hash: string) => (onHome ? hash : `/${hash}`);
+
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
@@ -33,7 +40,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy for the active nav item.
+  // Scroll-spy for the active nav item. There are no tracked sections on any
+  // page but the home page, so it simply finds nothing and stays inert.
   useEffect(() => {
     const elements = sectionIds
       .map((id) => document.getElementById(id))
@@ -88,7 +96,7 @@ export function Navbar() {
             className="flex h-20 items-center justify-between md:h-[5.5rem]"
           >
             <a
-              href="#top"
+              href={hrefFor("#top")}
               aria-label={`${site.brand} — home`}
               className="group -m-2 rounded-lg p-2 transition-opacity duration-300 hover:opacity-80"
             >
@@ -106,7 +114,7 @@ export function Navbar() {
                 return (
                   <li key={link.href}>
                     <a
-                      href={link.href}
+                      href={hrefFor(link.href)}
                       aria-current={isActive ? "true" : undefined}
                       className={cn(
                         "relative rounded-full px-4 py-2 text-sm transition-colors duration-300",
@@ -205,7 +213,7 @@ export function Navbar() {
                       }}
                     >
                       <a
-                        href={link.href}
+                        href={hrefFor(link.href)}
                         onClick={() => setOpen(false)}
                         className="group flex items-center justify-between border-b border-line py-5 text-[1.75rem] tracking-[-0.03em] text-white transition-colors duration-300 hover:text-accent"
                         style={{ fontFamily: "var(--font-display)" }}
