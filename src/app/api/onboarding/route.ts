@@ -193,7 +193,13 @@ export async function POST(request: Request) {
   const name = answers.fullName as string;
   const business = answers.businessName as string;
   const replyTo = answers.email as string;
-  const apiKey = process.env.RESEND_API_KEY;
+
+  /*
+   * Trimmed on purpose. Pasting a key into a dashboard field very easily picks
+   * up a trailing newline or space, which is invisible there and comes back
+   * from Resend as a flat "API key is invalid" — a miserable thing to debug.
+   */
+  const apiKey = process.env.RESEND_API_KEY?.trim();
 
   if (!apiKey) {
     console.info(
@@ -201,6 +207,15 @@ export async function POST(request: Request) {
       text,
     );
     return NextResponse.json({ ok: true });
+  }
+
+  // Resend keys are always "re_…". Anything else is a masked value copied from
+  // the dashboard after creation, or the wrong variable entirely — worth saying
+  // out loud in the log rather than leaving it as a generic rejection.
+  if (!apiKey.startsWith("re_")) {
+    console.error(
+      `[onboarding] RESEND_API_KEY does not look like a Resend key (starts with "${apiKey.slice(0, 3)}", length ${apiKey.length}). Resend shows the full key only once, at creation.`,
+    );
   }
 
   try {
@@ -211,8 +226,8 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: process.env.ONBOARDING_FROM || DEFAULT_FROM,
-        to: [process.env.ONBOARDING_TO || site.email],
+        from: process.env.ONBOARDING_FROM?.trim() || DEFAULT_FROM,
+        to: [process.env.ONBOARDING_TO?.trim() || site.email],
         reply_to: replyTo,
         subject: `Onboarding — ${business} (${name})`,
         html,
