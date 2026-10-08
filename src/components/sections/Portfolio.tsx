@@ -165,8 +165,9 @@ export function Portfolio() {
             // clickable and, when there's no uploaded image, which video the
             // poster frame comes from. A malformed link resolves to null, so
             // the card degrades to the plain, unclickable placeholder version.
-            const source = parseYouTubeUrl(project.video);
-            const playable = source !== null;
+           const source = parseYouTubeUrl(project.video);
+           const isLocalVideo = Boolean(project.video && !source);
+           const playable = source !== null || isLocalVideo;
 
             return (
               <motion.article
@@ -189,28 +190,37 @@ export function Portfolio() {
                   )}
                 >
                   {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} — ${project.category} work for ${project.client}`}
-                      fill
-                      loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-                    />
-                  ) : source ? (
-                    <YouTubeThumbnail
-                      key={source.id}
-                      videoId={source.id}
-                      alt={`${project.title} — ${project.category} work for ${project.client}`}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]">
-                      <ProjectPlaceholder
-                        category={project.category}
-                        seed={i + project.title.length}
-                      />
-                    </div>
-                  )}
+  <Image
+    src={project.image}
+    alt={`${project.title} — ${project.category} work for ${project.client}`}
+    fill
+    loading="lazy"
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    className="object-cover transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+  />
+) : source ? (
+  <YouTubeThumbnail
+    key={source.id}
+    videoId={source.id}
+    alt={`${project.title} — ${project.category} work for ${project.client}`}
+  />
+) : isLocalVideo ? (
+  <video
+    src={project.video}
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    className="absolute inset-0 h-full w-full object-cover"
+  />
+) : (
+  <div className="absolute inset-0 transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]">
+    <ProjectPlaceholder
+      category={project.category}
+      seed={i + project.title.length}
+    />
+  </div>
+)}
 
                   <span className="absolute left-4 top-4 rounded-full border border-white/12 bg-ink/70 px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-white/70 backdrop-blur-md transition-colors duration-500 group-hover:border-white/20 group-hover:text-white/90">
                     {project.category}
