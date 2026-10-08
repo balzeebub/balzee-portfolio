@@ -187,7 +187,7 @@ export const projects: Project[] = [
     tags: ["AI", "Automation", "Workflow"],
     metric: "33s workflow demo",
     ratio: "landscape",
-    video: "/portfolio/videos/ai-workflow.mp4",
+    video: "https://www.youtube.com/watch?v=kJ9cZxq5j20",
   },
 ];
 
