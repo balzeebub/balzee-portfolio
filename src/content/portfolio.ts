@@ -2,13 +2,15 @@ export type PortfolioCategory =
   | "Video Editing"
   | "Social Media"
   | "Graphic Design"
-  | "Landing Pages";
+  | "Landing Pages"
+  | "AI Workflow";
 
 export const portfolioCategories: PortfolioCategory[] = [
   "Video Editing",
   "Social Media",
   "Graphic Design",
   "Landing Pages",
+  "AI Workflow",
 ];
 
 export type Project = {
@@ -175,4 +177,18 @@ export const projects: Project[] = [
     ratio: "square",
     image: "/portfolio/images/Open House Registration.png",
   },
+   // ---------------------------------------------------------- ai workflow --
+  {
+    title: "AI Workflow",
+    client: "Balzeebub",
+    category: "AI Workflow",
+    description:
+      "An AI-powered workflow designed to automate repetitive tasks, connect tools, and turn manual processes into streamlined systems.",
+    tags: ["AI", "Automation", "Workflow"],
+    metric: "33s workflow demo",
+    ratio: "landscape",
+    video: "/portfolio/videos/ai-workflow.mp4",
+  },
 ];
+
+
