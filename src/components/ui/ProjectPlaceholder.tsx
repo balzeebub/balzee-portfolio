@@ -1,4 +1,4 @@
-import { Film, Images, LayoutTemplate, Shapes } from "lucide-react";
+import { Film, Images, LayoutTemplate, Shapes, Workflow } from "lucide-react";
 import type { PortfolioCategory } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -7,6 +7,7 @@ const icons: Record<PortfolioCategory, typeof Film> = {
   "Social Media": Images,
   "Graphic Design": Shapes,
   "Landing Pages": LayoutTemplate,
+  "AI Workflow": Workflow,
 };
 
 /**
