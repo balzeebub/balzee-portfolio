@@ -130,6 +130,7 @@ export function VideoModal({
   const returnFocusRef = useRef<Element | null>(null);
 
   const source = useMemo(() => parseYouTubeUrl(url), [url]);
+  const isLocalVideo = Boolean(url && !source);
 
   /**
    * Silence the player immediately. The iframe unmounts a beat later when the
@@ -210,7 +211,7 @@ export function VideoModal({
 
   return (
     <AnimatePresence>
-      {open && source ? (
+    {open && (source || isLocalVideo) ? (
         <motion.div
           key="video-modal"
           className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6"
@@ -274,15 +275,25 @@ export function VideoModal({
                 vertical ? "aspect-[9/16]" : "aspect-video",
               )}
             >
-              <iframe
-                ref={iframeRef}
-                src={embedSrc(source)}
-                title={title ?? "Video"}
-                className="absolute inset-0 h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+             {isLocalVideo ? (
+  <video
+    src={url}
+    controls
+    autoPlay
+    playsInline
+    className="absolute inset-0 h-full w-full object-contain"
+  />
+) : source ? (
+  <iframe
+    ref={iframeRef}
+    src={embedSrc(source)}
+    title={title ?? "Video"}
+    className="absolute inset-0 h-full w-full"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  />
+) : null}
             </div>
           </motion.div>
         </motion.div>
