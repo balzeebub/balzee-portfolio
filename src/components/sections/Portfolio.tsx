@@ -205,14 +205,20 @@ export function Portfolio() {
     alt={`${project.title} — ${project.category} work for ${project.client}`}
   />
 ) : isLocalVideo ? (
-  <video
-    src={project.video}
-    muted
-    loop
-    playsInline
-    preload="metadata"
-    className="absolute inset-0 h-full w-full object-cover"
-  />
+  <div className="absolute inset-0">
+    <video
+      src={project.video}
+      muted
+      playsInline
+      preload="metadata"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-black shadow-lg">
+        ▶
+      </div>
+    </div>
+  </div>
 ) : (
   <div className="absolute inset-0 transition-[transform,translate,scale] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]">
     <ProjectPlaceholder
